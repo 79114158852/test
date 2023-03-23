@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('balance_transactions', function (Blueprint $table) {
-            $table->char('uuid', 32)->unique('uuid');
+            $table->char('uuid', 36)->unique('uuid');
             $table->unsignedBigInteger('balance_id')->index('balance_id');
-            $table->timestamp('created_at')->useCurrentOnUpdate()->useCurrent()->index('created_at');
-            $table->double('value', 15, 2);
+            $table->dateTime('date')->useCurrent()->index('created_at');
+            $table->decimal('amount', 15);
             $table->text('description')->fulltext('description');
         });
     }

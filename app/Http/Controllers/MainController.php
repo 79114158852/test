@@ -21,6 +21,6 @@ class MainController extends Controller
      */
     public function refresh(): Response
     {   
-        return new Response(view('components.transactions', ['transactions' => Auth::user()->lastTransactions()])->render());
+        return new Response(view('components.transactions', ['transactions' => Auth::user()->listTransactions()])->render());
     }
 }

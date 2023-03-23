@@ -4,8 +4,8 @@
     <form method="POST" action="{{ route('login_check') }}">
         @csrf
         <div class="form-outline mb-4">
-            <label class="form-label" for="email">Почта</label>
-            <input type="email" id="email" name="email" class="form-control" required/>
+            <label class="form-label" for="login">Логин</label>
+            <input type="text" id="login" name="login" class="form-control" required/>
         </div>
         <div class="form-outline mb-4">
             <label class="form-label" for="password">Пароль</label>

@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('user_balance', function (Blueprint $table) {
-            $table->foreign(['user_id'], 'user_balance_ibfk_1')->references(['id'])->on('users')->onDelete('CASCADE');
+        Schema::create('user_balance', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id')->index('user_id');
+            $table->unsignedDecimal('balance', 15)->default(0);
         });
     }
 
@@ -25,8 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('user_balance', function (Blueprint $table) {
-            $table->dropForeign('user_balance_ibfk_1');
-        });
+        Schema::dropIfExists('user_balance');
     }
 };

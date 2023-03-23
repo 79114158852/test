@@ -22,5 +22,5 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/', ['App\\Http\\Controllers\\MainController', 'index'])->name('main');
     Route::get('/history', ['App\\Http\\Controllers\\HistoryController', 'index'])->name('history');
     Route::get('/logout', ['App\\Http\\Controllers\\LoginController', 'logout'])->name('logout');
-    Route::get('/refresh', ['App\\Http\\Controllers\\MainController', 'refresh'])->name('main');
+    Route::get('/refresh', ['App\\Http\\Controllers\\MainController', 'refresh'])->name('refresh');
 });

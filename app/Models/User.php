@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use App\Models\BalanceTransactions;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Support\Collection;
 
 class User extends Authenticatable
 {
@@ -18,8 +22,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
+        'login',
         'password',
     ];
 
@@ -33,12 +36,44 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+
     /**
-     * The attributes that should be cast.
+     * Current user balance
      *
-     * @var array<string, string>
+     * @return HasOne
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function balance(): HasOne
+    {
+        return $this->hasOne(UserBalance::class, 'user_id', 'id');
+    }
+
+
+    /**
+     * Current user transactions
+     */
+    public function transactions(): HasManyThrough
+    {
+        return $this->hasManyThrough(BalanceTransactions::class, UserBalance::class, 'user_id', 'balance_id');
+    }
+
+        /**
+     * Current user transactions
+     */
+    public function listTransactions(int|false $limit = 5, string $order = 'desc', string $search = ''): Collection
+    {   
+        $collection = $this->transactions()->orderBy('date', $order);
+
+        if ($search) {
+
+            $collection->where('description', 'LIKE', '%'.$search.'%');
+
+        }
+
+        if ($limit !== false) {
+            $collection->take($limit);
+        }
+
+        return $collection->get();
+    }
+
 }

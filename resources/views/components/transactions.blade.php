@@ -3,7 +3,7 @@
         <tr>
             <td>{{ $transaction->uuid }}</td>
             <td>{{ $transaction->date }}</td>
-            <td>{{ $transaction->value }}</td>
+            <td>{{ $transaction->amount }}</td>
             <td>{{ $transaction->description }}</td>
         </tr>       
     @empty
