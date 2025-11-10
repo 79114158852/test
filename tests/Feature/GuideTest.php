@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Models\Guide;
-use Illuminate\Testing\Fluent\AssertableJson;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Testing\Fluent\AssertableJson;
+use Tests\TestCase;
 
 class GuideTest extends TestCase
 {
@@ -16,11 +16,11 @@ class GuideTest extends TestCase
         Guide::factory()->create();
         $response = $this->getJson('/api/guides');
         $response->assertJson(fn (AssertableJson $json) => $json->has('data.0', fn (AssertableJson $json) => $json
-                ->whereType('id', 'integer')
-                ->whereType('name', 'string')
-                ->whereType('experience_years', 'integer')
-                ->whereType('is_active', 'boolean')
-            )
+            ->whereType('id', 'integer')
+            ->whereType('name', 'string')
+            ->whereType('experience_years', 'integer')
+            ->whereType('is_active', 'boolean')
+        )
         );
         $response->assertOk();
     }

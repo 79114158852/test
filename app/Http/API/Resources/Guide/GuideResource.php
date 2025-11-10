@@ -8,6 +8,7 @@ class GuideResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
+     *
      * @param  \Illuminate\Http\Request  $request
      * @return array<mixed>
      */
@@ -17,7 +18,7 @@ class GuideResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'experience_years' => $this->experience_years,
-            'is_active' => $this->is_active
+            'is_active' => $this->is_active,
         ];
     }
 }

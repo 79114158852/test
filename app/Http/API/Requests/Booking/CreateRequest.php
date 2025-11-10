@@ -17,7 +17,7 @@ class CreateRequest extends \Illuminate\Foundation\Http\FormRequest
             'hunter_name' => 'required|string',
             'date' => 'required|date_format:Y-m-d',
             'participants_count' => 'required|integer|min:0|max:10',
-            'guide_id' => 'required|exists:App\Models\Guide,id'
+            'guide_id' => 'required|exists:App\Models\Guide,id',
         ];
     }
 
@@ -31,20 +31,18 @@ class CreateRequest extends \Illuminate\Foundation\Http\FormRequest
 
     /**
      * Дополнительная проверка занятости гида
-     *
-     * @return array
      */
     public function after(): array
     {
         return [
             function (Validator $validator) {
-                if ((bool)HuntingBooking::where('date', $this->date)->where('guide_id', $this->guide_id)->first()) {
+                if ((bool) HuntingBooking::where('date', $this->date)->where('guide_id', $this->guide_id)->first()) {
                     $validator->errors()->add(
                         'guide_id',
                         'The guide is already busy on the selected date.'
                     );
                 }
-            }
+            },
         ];
     }
 }

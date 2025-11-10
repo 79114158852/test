@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
 class Guide extends Model
 {
     /** @use HasFactory<\Database\Factories\GuideFactory> */
@@ -13,6 +14,6 @@ class Guide extends Model
         'id',
         'name',
         'experience_years',
-        'is_active'
+        'is_active',
     ];
 }

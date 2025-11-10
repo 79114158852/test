@@ -8,6 +8,7 @@ class BookingResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
+     *
      * @param  \Illuminate\Http\Request  $request
      * @return array<mixed>
      */
@@ -19,7 +20,7 @@ class BookingResource extends JsonResource
             'hunter_name' => $this->hunter_name,
             'date' => $this->date,
             'participants_count' => $this->participants_count,
-            'guide' => $this->guide
+            'guide' => $this->guide,
         ];
     }
 }

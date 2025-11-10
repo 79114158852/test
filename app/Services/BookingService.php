@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Models\HuntingBooking;
 use App\Contracts\BookingServiceContract;
+use App\Models\HuntingBooking;
 use Illuminate\Database\Eloquent\Model;
 
 class BookingService implements BookingServiceContract

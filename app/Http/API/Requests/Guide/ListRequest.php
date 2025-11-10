@@ -10,7 +10,7 @@ class ListRequest extends \Illuminate\Foundation\Http\FormRequest
     public function rules(): array
     {
         return [
-            'min_experience' => 'nullable|integer|min:0'
+            'min_experience' => 'nullable|integer|min:0',
         ];
     }
 

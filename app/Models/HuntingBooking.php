@@ -12,7 +12,7 @@ class HuntingBooking extends Model
         'hunter_name',
         'date',
         'guide_id',
-        'participants_count'
+        'participants_count',
     ];
 
     public function guide(): \Illuminate\Database\Eloquent\Relations\BelongsTo
