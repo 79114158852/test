@@ -15,8 +15,8 @@ class HuntingBooking extends Model
         'participants_count'
     ];
 
-    public function guide(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function guide(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->hasOne(Guide::class);
+        return $this->belongsTo(Guide::class);
     }
 }

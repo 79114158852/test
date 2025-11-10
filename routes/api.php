@@ -1,8 +1,10 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+Route::group([
+    'middleware' => [],
+], function () {
+    Route::get('/guides', [\App\Http\API\Controllers\GuideController::class, 'list']);
+    Route::post('/bookings', [\App\Http\API\Controllers\BookingController::class, 'create']);
+});
